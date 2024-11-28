@@ -1,8 +1,8 @@
-const Lineage = require('../../models/Lineage');
+const Village = require('../../models/Village');
 const mongoose = require('mongoose');
 
 
-exports.createLineage = async(req,res) => {
+exports.createVillage = async(req,res) => {
    try {
       const {title} = req.body;
       if(!title) return res.status(400).json({
@@ -10,24 +10,24 @@ exports.createLineage = async(req,res) => {
         message:'Title is missing!'
       })
 
-     const existLineage = await Lineage.find({title});
+     const existVillage = await Village.findOne({title});
 
      //conflicate 409 error
-    if(!existLineage) return res.status(409).json({
+    if(existVillage) return res.status(409).json({
         success:false,
-        message:"Lineage already exists!"
+        message:`Village ${title} already exists!`
     })
 
-    const lineage = await Lineage.create({title});
+    const village = await Village.create({title});
 
       return res.status(200).json({
         success:true,
-        message:'Gotra/Lineage created!'
+        message:'Village created!'
       })
    }
    catch(error)
    {    
-        console.log("LineageError",error);
+        console.log("VillageError",error);
         return res.status(500).json({
             success:true,
             message:'Something went wrong!'
@@ -35,7 +35,7 @@ exports.createLineage = async(req,res) => {
    }
 }
 
-exports.updateLineage = async(req,res) => {
+exports.updateVillage = async(req,res) => {
     try
     {
         const {newTitle,id} = req.body;
@@ -49,25 +49,25 @@ exports.updateLineage = async(req,res) => {
 
         if(!isValidObjectId) return res.status(400).json({
             succcess:false,
-            message:"Invalid Lineage Id!"
+            message:"Invalid Village Id!"
         })
+        
+        const updatedVillage = await Village.findByIdAndUpdate(id,{$set : {title:newTitle}});
 
-        const updatedLineage = await Lineage.findByIdAndUpdate(id,{$set : {title:newTitle}});
-
-        if(!updatedLineage) return resizeTo.status(400).json({
+        if(!updatedVillage) return res.status(400).json({
             success:false,
-            message:'No such Lineage exists!'
+            message:'No such Village exists!'
         })
 
         return res.status(200).json({
             success:true,
-            message:"Lineage Updated!"
+            message:"Village Updated!"
         })
 
     }
     catch(error)
     {
-        console.log("updateLineage",error);
+        console.log("updateVillage",error);
         return res.status(500).json({
             success:false,
             message:'Something went wrong!'
@@ -75,7 +75,7 @@ exports.updateLineage = async(req,res) => {
     }
 }
 
-exports.deleteLineage = async(req,res) => {
+exports.deleteVillage = async(req,res) => {
      const {id} = req.body;
 
      try
@@ -89,26 +89,26 @@ exports.deleteLineage = async(req,res) => {
 
         if(!isValidObjectId) return res.status(400).json({
             succcess:false,
-            message:"Invalid Lineage Id!"
+            message:"Invalid Village Id!"
         })
 
-           const deletedLineage = await Lineage.findByIdAndDelete(id);
+           const deletedVillage = await Village.findByIdAndDelete(id);
 
-            if (!deletedLineage) {
+            if (!deletedVillage) {
             return res.status(400).json({
                 success:false,
-                message:"No such Lineage exists!"
+                message:"No such Village exists!"
              })
             }
 
             return res.status(200).json({
                 succcess:true,
-                message:"Lineage deleted!"
+                message:"Village deleted!"
             })
      }
      catch(error)
     {
-        console.log("deleteLineage",error);
+        console.log("deleteVillage",error);
         return res.status(500).json({
             success:false,
             message:'Something went wrong!'
@@ -118,21 +118,21 @@ exports.deleteLineage = async(req,res) => {
 
 }
 
-exports.getAllLineage = async(req,res) => {
+exports.getAllVillages = async(req,res) => {
 
     try
     {
-        const allLineage = await Lineage.find();
+        const allVillage = await Village.find();
 
-        if(!allLineage) return res.status(404).json({
+        if(!allVillage) return res.status(404).json({
             success:false,
-            message:"Lineages not found!"
+            message:"Villages not found!"
         })
 
         return res.status(200).json({
             success:true,
             message:"Retrieved successfully!",
-            body:allLineage
+            body:allVillage
         })
     }
     catch(error)

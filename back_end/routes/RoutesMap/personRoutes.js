@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 const {createPerson,updatePerson,deletePerson,getAllPerson} = require('../../controllers/personControllers/crudPerson');
-const {validationOnCreatePerson} = require("../../middlewares/PersonMiddleware/person");
+const {validationOnCreatePerson, validationOnUpdatePerson} = require("../../middlewares/PersonMiddleware/person");
 
 router.post('/createPerson',validationOnCreatePerson,createPerson);
-router.post('/updatePerson',updatePerson);
+router.patch('/updatePerson',validationOnUpdatePerson,updatePerson);
 router.post('/deletePerson',deletePerson);
 router.get('/getAllPerson',getAllPerson)
 

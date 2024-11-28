@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 
 const villageSchema = new mongoose.Schema({
-    tile:{
+    title:{
         type:String,
         required:true
     },
     code:{
-        type:Number,
-        required:true
+        type:Number
     },
     nativePeople:[{
         type:mongoose.Schema.Types.ObjectId,

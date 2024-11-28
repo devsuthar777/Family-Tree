@@ -1,16 +1,31 @@
 const Person = require('../../models/Person');
+const Lineage = require('../../models/Lineage')
 const mongoose = require('mongoose');
+const Village = require('../../models/Village');
 
 
 exports.createPerson = async(req,res) => {
    try {
     const {name,gender,birthOrder,dob,occupation,father,lineage,nativePlace,mother,brothers,sisters,spouse} = req.body;
 
+    const personLineage = await Lineage.findOne({title:lineage});
+
+    if(!personLineage) return res.status(400).json({
+        success:false,
+        message:"No such lineage exists!"
+    });
+
+    const personVillage = await Village.findOne({title:nativePlace});
+
+    if(!personVillage) return res.status(400).json({
+        success:false,
+        message:"No such Native Place exists!"
+    });
+
+    const person = await Person.create({name,gender,birthOrder,dob:dob.replaceAll("/","-"),lineage : personLineage._id,nativePlace: personVillage._id});
 
 
-    const Person = await Person.create({name,gender,birthOrder,dob:dob.replaceAll("/","-"),lineage,nativePlace});
-
-    if(!Person) return res.status(400).json({
+    if(!person) return res.status(400).json({
         success:false,
         message:"Something wrong with request! Please try again!"
     })
@@ -18,7 +33,7 @@ exports.createPerson = async(req,res) => {
       return res.status(200).json({
         success:true,
         message:'Person created!',
-        body:Person
+        body:person
       })
    }
    catch(error)
@@ -34,12 +49,8 @@ exports.createPerson = async(req,res) => {
 exports.updatePerson = async(req,res) => {
     try
     {
-        const {newTitle,id} = req.body;
+        const {name,gender,birthOrder,dob,occupation,father,lineage,nativePlace,mother,brothers,sisters,spouse,id} = req.body;
 
-        if(!newTitle || !id) return res.status(400).json({
-            success:false,
-            message:'Incomplete request'
-        });
 
         const isValidObjectId = mongoose.Types.ObjectId.isValid(id);
 
@@ -48,17 +59,101 @@ exports.updatePerson = async(req,res) => {
             message:"Invalid Person Id!"
         })
 
-        const updatedPerson = await Person.findByIdAndUpdate(id,{$set : {title:newTitle}});
-
-        if(!updatedPerson) return resizeTo.status(400).json({
+        const personExists = await Person.findById(id);
+   
+        if(!personExists) return res.status(400).json({
             success:false,
             message:'No such Person exists!'
-        })
+        });
 
-        return res.status(200).json({
-            success:true,
-            message:"Person Updated!"
+
+        const personLineage = await Lineage.findOne({title:lineage});
+        if(!personLineage) return res.status(400).json({
+            success:false,
+            message:"No such lineage exists!"
+        });
+
+        const personVillage = await Village.findOne({title:nativePlace});
+
+        if(!personVillage) return res.status(400).json({
+            success:false,
+            message:"No such native place exists!"
+        });
+
+
+        if(father) 
+        {
+            const isValidObjectId = mongoose.Types.ObjectId.isValid(mother);
+            if(!isValidObjectId) return res.status(400).json({
+                success:false,
+                message:"Invalid Father Id"
+            })
+
+            const fatherExists = Person.findById(father);
+            
+            if(!fatherExists) return res.status(400).json({
+                success:false,
+                message:"No such father exists"
+            })
+
+        }
+
+        if(mother) 
+            {
+                const isValidObjectId = mongoose.Types.ObjectId.isValid(mother);
+                if(!isValidObjectId) return res.status(400).json({
+                    success:false,
+                    message:"Invalid Mother Id"
+                })
+    
+                const motherExists = Person.findById(mother);
+                
+                if(!motherExists) return res.status(400).json({
+                    success:false,
+                    message:"No such Mother exists"
+                })
+    
+            }
+        
+        if(spouse) 
+        {
+            const isValidObjectId = mongoose.Types.ObjectId.isValid(spouse); 
+            if(!isValidObjectId) return res.status(400).json({
+                success:false,
+                message:"Invalid spouse Id"
+            })
+
+            const spouseExists = Person.findById(spouse);
+            
+            if(!spouseExists) return res.status(400).json({
+                success:false,
+                message:"No such spouse exists"
+            })
+        }
+
+        //occupation validation
+
+        
+
+        const person = await Person.create(
+            {name,gender,birthOrder,
+                dob:dob.replaceAll("/","-"),
+                brohters:brothers ? brothers : [] ,
+                mother,father,sisters: sisters ? sisters : [],
+                lineage : personLineage._id,
+                nativePlace: personVillage._id});
+
+
+        if(!person) return res.status(400).json({
+            success:false,
+            message:"Something wrong with request! Please try again!"
         })
+    
+          return res.status(200).json({
+            success:true,
+            message:'Person updated!',
+            body:person
+          })
 
     }
     catch(error)
