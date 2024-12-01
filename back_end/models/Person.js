@@ -36,6 +36,10 @@ const personSchema =  new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'Village'
     },
+    maternalPlace :{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Village"
+    },
     mother:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Person'

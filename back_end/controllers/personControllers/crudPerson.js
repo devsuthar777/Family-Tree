@@ -49,7 +49,7 @@ exports.createPerson = async(req,res) => {
 exports.updatePerson = async(req,res) => {
     try
     {
-        const {name,gender,birthOrder,dob,occupation,father,lineage,nativePlace,mother,brothers,sisters,spouse,id} = req.body;
+        const {name,gender,birthOrder,dob,occupation,father,lineage,nativePlace,mother,brothers,sisters,spouse,id,maternalPlace} = req.body;
 
 
         const isValidObjectId = mongoose.Types.ObjectId.isValid(id);
@@ -78,6 +78,13 @@ exports.updatePerson = async(req,res) => {
         if(!personVillage) return res.status(400).json({
             success:false,
             message:"No such native place exists!"
+        });
+
+        const maternalPlaceExists = await Village.findOne({title:maternalPlace});
+
+        if(!maternalPlaceExists) return res.status(400).json({
+            success:false,
+            message:"No such maternal place exists!"
         });
 
 
@@ -135,13 +142,16 @@ exports.updatePerson = async(req,res) => {
 
         
 
-        const person = await Person.create(
+        const person = await Person.findOneAndUpdate(
+            {_id:id},
             {name,gender,birthOrder,
                 dob:dob.replaceAll("/","-"),
                 brohters:brothers ? brothers : [] ,
                 mother,father,sisters: sisters ? sisters : [],
                 lineage : personLineage._id,
-                nativePlace: personVillage._id});
+                nativePlace: personVillage._id,
+                maternalPlace:maternalPlaceExists._id
+            });
 
 
         if(!person) return res.status(400).json({
@@ -213,7 +223,7 @@ exports.getAllPerson = async(req,res) => {
 
     try
     {
-        const allPerson = await Person.find();
+        const allPerson = await Person.find().populate("father","name",).populate("nativePlace","title").populate("lineage","title").populate("maternalPlace","title")  ;
 
         if(!allPerson) return res.status(404).json({
             success:false,
@@ -228,6 +238,7 @@ exports.getAllPerson = async(req,res) => {
     }
     catch(error)
     {
+        console.log("getAllPeople",error);
         return res.status(500).json({
             success:false,
             message:"Something went wrong!"

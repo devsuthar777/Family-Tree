@@ -6,7 +6,7 @@ const {validationOnCreatePerson, validationOnUpdatePerson} = require("../../midd
 
 router.post('/createPerson',validationOnCreatePerson,createPerson);
 router.patch('/updatePerson',validationOnUpdatePerson,updatePerson);
-router.post('/deletePerson',deletePerson);
+router.delete('/deletePerson',deletePerson);
 router.get('/getAllPerson',getAllPerson)
 
 
