@@ -4,8 +4,9 @@ const router = express.Router();
 const lineageRoutes = require('./RoutesMap/lineageRoutes');
 const personRoutes  = require("./RoutesMap/personRoutes");
 const villageRoutes = require("./RoutesMap/villageRoutes");
+const userRoutes = require("./RoutesMap/userRoutes");
 
-//router.use('/users',userRoutes);
+router.use('/user',userRoutes);
 
 router.use('/person',personRoutes);
 

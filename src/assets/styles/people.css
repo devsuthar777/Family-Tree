@@ -99,3 +99,105 @@ color: white;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow reduces on click */
   }
 
+.PersonContainer{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.PersonInternalContainer
+{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.PersonHeadline
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profileIconParent{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.profileIcon{
+    width: 30px;
+    height: 30px;
+    padding: 0px 10px;
+}
+
+.PersonHeadline
+{
+    font-weight: bold;
+    font-size: 30px;
+    background-color: #D2B48C;
+    border-radius: 5px;
+}
+
+.profilePic {
+    width: 180px;
+    height: 200px;
+    margin-top: 20px;
+    margin-left: 10px;
+    border-radius: 10px;
+}
+
+.PersonBodyDetails
+{
+    background-color: #ADD8E6 ;
+    
+}
+
+.nameField
+{
+    font-weight: bold;
+}
+
+.detailsDiv
+{
+    
+    margin-left: 30px;
+}
+
+.sub-detailsDiv
+{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    column-gap: 10px;
+    
+}
+
+.PersonReltiveCard
+{
+    display: flex;
+    flex-direction: column;
+    padding: 10px 10px;
+    align-items: center;
+    gap: 10px;
+    
+}
+
+.PersonReltiveCard > img
+{
+ border-radius: 50%;   
+}
+
+.familyContainer
+{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.familyContainer > div {
+    display: flex;
+}

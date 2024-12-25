@@ -1,6 +1,6 @@
 const mongoose=require('mongoose');
 
-const userSchema = mongoose.Schema({
+const RegisterRequestSchema = mongoose.Schema({
     firstName:{
         type:String,
         required:true,
@@ -11,7 +11,7 @@ const userSchema = mongoose.Schema({
         required:true,
         trim:true
     },
-    emailPhoneNumber:{
+    emailPhone:{
         type:String,
         required:true,
         trim:true
@@ -21,15 +21,19 @@ const userSchema = mongoose.Schema({
         required:true,
         trim:true,
     },
-    linkedPerson:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'Person'
+    otp:{
+        type:Number,
+        required: true,
     },
-    userType:{
-        type:String,
-        enum:['Admin','Guest','User'],
+    authorised:{
+        type:Boolean,
         required:true
-    }
+    },
+    createdAt: {
+    type: Date,
+    default: Date.now, 
+    expires: 180,  
+  },
 })
 
-module.exports =mongoose.model("User",userSchema)
+module.exports =mongoose.model("RegisterRequest",RegisterRequestSchema)

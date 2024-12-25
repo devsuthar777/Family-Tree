@@ -1,0 +1,70 @@
+.RegisterPage
+{
+    width: 400px;
+  
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.RegisterOtpPage
+{
+    width: 300px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+input {
+    width: 100%;
+    padding: 8px ;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+  }
+
+  .inputDiv
+  {
+    width: 90%;
+  }
+  
+  .error {
+    color: red;
+    font-size: 0.8rem;
+    padding: 4px;
+  }
+  
+  button {
+    padding: 10px 50px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+
+  .formDiv
+  {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+   
+  }

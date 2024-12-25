@@ -3,6 +3,7 @@ import { FETCH_ALL_PEOPLE, FETCH_PERSON_VIEW_DETAILS } from "../constants/people
 import {setPeopleList,setError,setLoading,setPersonViewDetails} from "../../slices/peopleSlice";
 import fetchAllPeople_API from '../../services/operations/people/fetchAllPeople'
 import fetchPersonViewDetails_API from '../../services/operations/people/fetchPersonViewDetails'
+import { toast } from "react-toastify";
 function* fetchAllPeople(action)
 {
  
@@ -27,15 +28,17 @@ function* fetchPersonViewDetails(action)
 {
  
     yield put(setLoading(true));
+    yield put(setPersonViewDetails(null));
     try
     {
         const response = yield fetchPersonViewDetails_API(action.payload);
         yield put(setPersonViewDetails(response))
+        action.payload.navigate("user/register/"+response);
 
     }
     catch(error)
-    {
-        yield put(setError(error))
+    {  
+        toast.error(error.message);
     }
 
     yield put(setLoading(false));

@@ -27,7 +27,7 @@ const PersonIntroCard = ({data}) => {
               </div>
             </div>
             <div className='likeViewContainer'>
-                <button className='likeViewButton' onClick={()=> {navigate(`/people/${data._id}}`)}}><span>View</span><FaRegEye/></button>
+                <button className='likeViewButton' onClick={()=> {navigate(`/people/${data._id}`)}}><span>View</span><FaRegEye/></button>
                 <button className='likeViewButton'><span>Like </span><GrLike/></button>
             </div>
         </div>

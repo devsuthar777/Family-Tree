@@ -44,7 +44,7 @@ const personSchema =  new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'Person'
     },
-    brohters:[{
+    brothers:[{
         type:mongoose.Schema.Types.ObjectId,
         ref:'Person'
     }],
