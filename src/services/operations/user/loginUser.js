@@ -13,7 +13,7 @@ const  loginUser_API = async (body) =>  {
             {
                 
                 toast.success(response.data.message);
-                localStorage.setItem("familyTree_UserInfo",response.data.userData);
+                localStorage.setItem("familyTree_UserInfo",JSON.stringify(response.data.userData));
                 return response.data.userData;
             } 
         

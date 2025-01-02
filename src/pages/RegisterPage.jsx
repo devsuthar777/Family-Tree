@@ -2,13 +2,13 @@ import React, { useState } from 'react'
 import '../assets/styles/user.css'
 import createRegisterRequest from '../services/operations/user/createRegisterRequest';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createRegReq } from '../redux/customActions.js/userActions';
 
 const RegisterPage = () => {
 
   const [errors,setErrors]=useState({});
-
+  const {peopleList,error,loading} =  useSelector(state => state.user);
   const dispatch = useDispatch();
 
   const [formData,setFormData] = useState({
@@ -131,8 +131,9 @@ const RegisterPage = () => {
         />
         {errors.confirmPassword && <div className="error">{errors.confirmPassword}</div>}
       </div>
-
-      <button type="submit">Register</button>
+      {
+        loading ? <div className='loader'></div> : <button type="submit">Register</button>
+      }
     </form>
     </div>
   )

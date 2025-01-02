@@ -16,7 +16,7 @@ class ErrorBoundary extends React.Component {
   }
 
   render() {
-    debugger
+    
     if (this.state.hasError) {
       // Render a fallback UI
       return <h1>Oops! Something went wrong.</h1>;

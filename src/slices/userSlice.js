@@ -2,8 +2,8 @@ import {createSlice} from '@reduxjs/toolkit'
 
 const initialState = {
     regReqId: localStorage.getItem("regReqId") ? localStorage.getItem("regReqId") : null,
-    userInfo: localStorage.getItem("familyTree_UserInfo") ? localStorage.getItem("familyTree_UserInfo") : null,
-    loading:true,
+    userInfo: localStorage.getItem("familyTree_UserInfo") ? JSON.parse(localStorage.getItem("familyTree_UserInfo")) : null,
+    loading:false,
     error:null,
 }
 

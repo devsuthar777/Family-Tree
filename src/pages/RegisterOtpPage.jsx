@@ -3,10 +3,11 @@ import OtpInput from 'react-otp-input';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import verifyRegisterRequest from '../services/operations/user/verifyRegisterRequest';
+import { useSelector } from 'react-redux';
 const RegisterOtpPage = () => {
   debugger
     const [otp, setOtp] = useState('');
-
+    const {error,loading} =  useSelector(state => state.user);
     const {reqId} = useParams();
 
     const navigate = useNavigate();
@@ -54,9 +55,9 @@ const RegisterOtpPage = () => {
 
 
     </div>
-
-    <button type="submit" onClick={submitHandler}>Register</button>
-      
+    {
+        loading ? <div className='loader'></div> : <button type="submit" onClick={submitHandler}>Register</button>
+    }  
     </div>
   )
 }

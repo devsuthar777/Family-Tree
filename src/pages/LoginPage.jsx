@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import createRegisterRequest from '../services/operations/user/createRegisterRequest';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../redux/customActions.js/userActions';
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
 
     const [errors,setErrors]=useState({});
+    const {error,loading} =  useSelector(state => state.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [formData,setFormData] = useState({
@@ -75,7 +76,10 @@ const LoginPage = () => {
         {errors.password && <div className="error">{errors.password}</div>}
       </div>
 
-      <button type="submit">Sign In</button>
+      {
+        loading ? <div className='loader'></div> : <button type="submit">Sign In</button>
+      }
+        
     </form>
     </div>
   )
