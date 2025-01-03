@@ -9,7 +9,7 @@ debugger
    try
    {
         const response = await apiConnector("POST",User.CREATE_REGISTER_REQUEST,body);
-        debugger
+        
         if(response.data.success)
             {
                 toast.success(response.data.message);
@@ -25,9 +25,10 @@ debugger
    catch(error)
    {
     if (error.response && error.response.data) {
+      
         console.error('Error:', error.response.data);
         throw new Error(error.response.data.message || 'An error occurred while creating register request');
-        
+
       } else {
         // General error handling if it's not from the response
         console.error('Error:', error);      

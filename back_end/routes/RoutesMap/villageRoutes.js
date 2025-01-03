@@ -6,6 +6,6 @@ const {createVillage,updateVillage,deleteVillage,getAllVillages} = require('../.
 router.post("/createVillage",createVillage);
 router.post("/updateVillage",updateVillage);
 router.post("/deleteVillage",deleteVillage);
-router.post("/getAllVillages",getAllVillages);
+router.get("/getAllVillages",getAllVillages);
 
 module.exports =  router;

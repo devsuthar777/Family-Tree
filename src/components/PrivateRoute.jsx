@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 
 const PrivateRoute = ({children}) => {
 
-    debugger
+    
     const {userInfo} = useSelector((state) => state.user);
 
     if(userInfo?.token !== null)

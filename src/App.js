@@ -33,7 +33,7 @@ function App() {
     <div className="App">
       <ToastContainer
         position="top-right" // Position of the toast
-        autoClose={5000} // Time (in ms) before auto closing the toast
+        autoClose={3000} // Time (in ms) before auto closing the toast
         hideProgressBar={false} // Whether or not to show the progress bar
         newestOnTop={false} // Whether to place the newest toast at the top or bottom
         closeOnClick={true} // Close the toast when clicked

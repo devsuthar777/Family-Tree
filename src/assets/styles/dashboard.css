@@ -44,3 +44,59 @@
     display: flex;
     gap: 20px;
   }
+
+  .CRUDVillages_nav button {
+    background-color: #D2B48C;
+  }
+
+  .CRUDVillages_nav button.active {
+    border: 2px solid black;
+    box-shadow: 0px 4px 8px #dddddd;
+  }
+
+  .CRUDVillages_main div.loader{
+    margin-left: 200px;
+    margin-top: 100px;
+  }
+
+  .CRUDVillages_table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 18px;
+    min-width: 600px;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+  }
+  
+
+  .CRUDVillages_table thead tr {
+    background-color: #D2B48C;
+    color: #ffffff;
+    text-align: left;
+    border: 2px solid #D2B48C;
+  }
+  
+  .CRUDVillages_table th,
+  .CRUDVillages_table td {
+    padding: 12px 15px;
+  }
+  
+  .CRUDVillages_table tbody tr {
+    border-bottom: 1px solid #dddddd;
+    border-left: 2px solid #D2B48C;
+    border-right: 2px solid #D2B48C;
+  }
+  
+  .CRUDVillages_table tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  
+  .CRUDVillages_table tbody tr:last-of-type {
+    border-bottom: 2px solid #D2B48C;
+  }
+  
+  .CRUDVillages_table tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+  }
+ 
