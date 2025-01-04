@@ -37,23 +37,15 @@
   .CRUDVillagesDiv
   {
     padding: 20px;
+    position: relative;
   }
 
-  .CRUDVillages_nav
+  .CRUDVillages_main
   {
-    display: flex;
-    gap: 20px;
+    position: absolute;
+    top: 40px;
   }
-
-  .CRUDVillages_nav button {
-    background-color: #D2B48C;
-  }
-
-  .CRUDVillages_nav button.active {
-    border: 2px solid black;
-    box-shadow: 0px 4px 8px #dddddd;
-  }
-
+  
   .CRUDVillages_main div.loader{
     margin-left: 200px;
     margin-top: 100px;
@@ -80,6 +72,10 @@
   .CRUDVillages_table td {
     padding: 12px 15px;
   }
+
+  .CRUDVillages_table td svg:hover {
+    cursor: pointer;
+  }
   
   .CRUDVillages_table tbody tr {
     border-bottom: 1px solid #dddddd;
@@ -100,3 +96,66 @@
     color: #009879;
   }
  
+.PopUpContainer
+{
+  position: absolute;
+  z-index: 10;
+  top:50px;
+  padding-top: 20px;
+  left: 50px;
+  width: 500px;
+  height: 150px;
+  background-color: #D2B48C;
+  border-radius: 15px;
+  
+}
+
+.CRUDVillages_nav
+{
+  position: absolute;
+  top: 0;
+  
+}
+
+.CREATEVillagePopUp
+{
+  padding: 10px;
+}
+.CREATEVillagePopUp div.formDiv
+{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.CREATEVillagePopUp div.buttonDiv
+{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+}
+
+
+.UPDATEVillagePopUp
+{
+  padding: 10px;
+}
+.UPDATEVillagePopUp div.formDiv
+{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  font-weight: bold;
+  font-size: larger;
+}
+
+.UPDATEVillagePopUp div.buttonDiv
+{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+}

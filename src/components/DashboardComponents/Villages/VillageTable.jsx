@@ -1,7 +1,7 @@
 import React from "react";
 import { MdDeleteForever } from "react-icons/md";
 import { FaEdit } from "react-icons/fa";
-const VillageTable = ({ data }) => {
+const VillageTable = ({ data,setPopUpData }) => {
   return (
     <table className="CRUDVillages_table">
       <thead>
@@ -18,7 +18,7 @@ const VillageTable = ({ data }) => {
             <td>{village._id}</td>
             <td>{village.title}</td>
             <td>
-              <FaEdit />
+              <FaEdit  onClick={()=> setPopUpData({type:'UPDATE' , id:village._id,title:village.title})}/>
             </td>
             <td>
               <MdDeleteForever />

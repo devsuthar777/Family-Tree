@@ -15,9 +15,10 @@ export const User =  {
 }
 
 export const Village = {
-    FETCH_ALL_VILLAGES: BASE_URL+'village/getAllVillages'
+    FETCH_ALL_VILLAGES: BASE_URL+'village/getAllVillages',
+    CREATE_VILLAGE: BASE_URL+'village/createVillage'
 }
 
 export const Lineage = {
-    FETCH_ALL_LINEAGES: BASE_URL+'lineage/getAllLineage'
+    FETCH_ALL_LINEAGES: BASE_URL+'lineage/getAllLineage',
 }

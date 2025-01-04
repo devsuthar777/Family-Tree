@@ -1,12 +1,13 @@
+import { toast } from "react-toastify";
 import { apiConnector } from "../../apiConnector"
 import { Village } from "../../apiContant"
 
-const  fetchAllVillages_API = async () =>  {
-debugger
+const  createVillage_API = async (data) =>  {
+
    try
    {
-        const response = await apiConnector("GET",Village.FETCH_ALL_VILLAGES);
-        if(response.data.success) return response.data.body;
+        const response = await apiConnector("POST",Village.CREATE_VILLAGE,data);
+        if(response.data.success) return response.data;
         throw new Error(response.data.message);
    }
    catch(error)
@@ -24,4 +25,4 @@ debugger
 
 }
 
-export default  fetchAllVillages_API
+export default  createVillage_API
